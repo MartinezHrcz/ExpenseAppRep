@@ -1,6 +1,7 @@
 package Application.Classes;
 
 public class Expenses {
+
     private String Name;
     private String Desc;
     private double Amount;
