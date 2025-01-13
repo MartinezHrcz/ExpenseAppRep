@@ -1,6 +1,7 @@
 package Application.Runner;
 
 import Application.Exceptions.NumberOutOfRange;
+import Application.Menus.IncomeMenu;
 import Application.Utils.Menu;
 
 import java.util.Scanner;
@@ -8,7 +9,7 @@ import java.util.Scanner;
 public class Runner {
     //Menu items stored in local variable
     //ToDo: Store in a txt and read in on launch
-    private final static String[] menuItems = {"Bevétel megadása", "Kiadások"};
+    private final static String[] menuItems = {"Bevétel", "Kiadások","Type \"exit\" to stop program"};
 
     //Entry point
     public static void main(String[] args) {
@@ -34,7 +35,7 @@ public class Runner {
     //This is where the program prechecks the input
     // and redirects to the correct next menu
     private static void UserInputRedirect(String input) {
-        int inputInt;
+        int inputInt = 0;
         //Precheck
 
         //Checks if the input is blank
@@ -45,7 +46,7 @@ public class Runner {
         //Checks if the input is a number
         try{
             //Converting to an integer
-            inputInt = Integer.parseInt(input);
+            inputInt = Integer.parseInt(input.trim());
             //Checks if a number is in valid range
             if (inputInt < 1 || inputInt > menuItems.length){
                 System.out.println( new NumberOutOfRange(input).getMessage());
@@ -56,6 +57,9 @@ public class Runner {
         }
 
         //Redirecting
+        switch (inputInt){
+            case 1: IncomeMenu.RunIncome();break;
+        }
     }
 
 }

@@ -6,21 +6,21 @@ public class Income {
 
     private String nameOfIncome;
 
-    private int incomeAmount;
+    private double incomeAmount;
     //Description of the income source
     private String desc;
     //used if an income source is reoccuring
     private int dateOfrecurrenceDay;
 
     //Constructor for every variable
-    public Income(String nameOfIncome, int incomeAmount, String desc, int date) {
+    public Income(String nameOfIncome, double incomeAmount, String desc, int date) {
         this.nameOfIncome = nameOfIncome;
         this.incomeAmount = incomeAmount;
         this.desc = desc;
         this.dateOfrecurrenceDay = date;
     }
     //Constructor without Day of reoccurence
-    public Income(String nameOfIncome,int incomeAmount, String desc) {
+    public Income(String nameOfIncome,double incomeAmount, String desc) {
         this.incomeAmount = incomeAmount;
         this.desc = desc;
     }
@@ -29,7 +29,7 @@ public class Income {
         return nameOfIncome;
     }
 
-    public int getIncomeAmount() {
+    public double getIncomeAmount() {
         return incomeAmount;
     }
 
