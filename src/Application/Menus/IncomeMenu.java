@@ -28,6 +28,7 @@ public class IncomeMenu {
             Redirecting(input.trim());
         }
     }
+    //Redirecting and prechecking input
     private static void Redirecting(String input) throws IOException {
         int inputInt = 0;
         //Precheck
@@ -61,15 +62,14 @@ public class IncomeMenu {
                 break;
         }
     }
-
+    //Adding income
     private static void AddIncome() throws IOException {
         ListIncomeExpenses.AddtoIncomeList();
     }
-
-    private static void RemoveIncome() {
-
+    //Removing Income
+    private static void RemoveIncome() throws IOException {
+        ListIncomeExpenses.RemoveFromIncomeList();
     }
-
     //just lists the incomes
     private static void ShowIncome() throws IOException {
         ListIncomeExpenses.ListIncomeList();

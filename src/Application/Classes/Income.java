@@ -21,6 +21,7 @@ public class Income {
     }
     //Constructor without Day of reoccurence
     public Income(String nameOfIncome,double incomeAmount, String desc) {
+        this.nameOfIncome = nameOfIncome;
         this.incomeAmount = incomeAmount;
         this.desc = desc;
     }

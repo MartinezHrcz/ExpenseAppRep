@@ -29,6 +29,8 @@ public class Expenses {
         this.Checked = false;
     }
 
+    //Getters
+    //-----------------------------------------
     public String getName() {
         return Name;
     }
@@ -48,6 +50,7 @@ public class Expenses {
     public void setChecked(boolean checked) {
         Checked = checked;
     }
+    //-----------------------------------------
 
     @Override
     public String toString() {

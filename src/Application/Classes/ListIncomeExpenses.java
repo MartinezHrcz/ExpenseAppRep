@@ -6,11 +6,12 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ListIncomeExpenses {
-
-    private static List<Income> IncomeList = new ArrayList<>();
-
+    //Stores the Income values
+    public static List<Income> IncomeList = new ArrayList<>();
+    //Stores the Expense values
     public static List<Expenses> ExpensesList= new ArrayList<>();
 
+    //Adds value to Income list
     public static void AddtoIncomeList() throws IOException {
         Scanner userIncInputSC = new Scanner(System.in);
         Income i;
@@ -53,8 +54,39 @@ public class ListIncomeExpenses {
         IncomeList.add(i);
     }
 
+    //Removes specified Income from IncomeList
+    public static void RemoveFromIncomeList() throws IOException {
+        //Precheck if Incomelist is empty
+        if (IncomeList.isEmpty()) {
+            System.out.println("Nothing to remove");
+            return;
+        }
 
+        int index = 0;
+        //Listsincome list but only it's name
+        for (Income i : IncomeList) {
+            index++;
+            System.out.println(index + "." +i.getNameOfIncome());
+        }
 
+        Scanner userDeleteSC = new Scanner(System.in);
+        String input;
+        int inputInt = 0;
+        //User input of which index to delete
+        do{
+            try{
+                input = userDeleteSC.nextLine();
+                inputInt = Integer.parseInt(input);
+            }
+            catch(NumberFormatException e){
+                System.out.println("Invalid input, please try again!");
+            }
+        }while (inputInt < 1 || inputInt > IncomeList.size());
+        //Removes the selected object
+        IncomeList.remove(IncomeList.get(inputInt-1));
+    }
+
+    //Prints IncomeList to console
     public static void ListIncomeList() throws IOException {
         int index = 0;
         for (Income income : ListIncomeExpenses.IncomeList){
@@ -64,6 +96,5 @@ public class ListIncomeExpenses {
         System.out.println("Press any key to continue...");
         System.in.read();
     }
-
 
 }
