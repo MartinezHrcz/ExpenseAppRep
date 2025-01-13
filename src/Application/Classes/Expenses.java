@@ -51,17 +51,18 @@ public class Expenses {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Expenses{");
-        sb.append("Name='").append(Name).append('\'');
-        sb.append(", Desc='").append(Desc).append('\'');
-        sb.append(", Amount=").append(Amount);
+        final StringBuilder sb = new StringBuilder("");
+        sb.append("Name='").append(Name).append('\n');
+        sb.append(", Description='").append(Desc).append('\n');
+        sb.append(", Amount=").append(Amount).append('\n');
         //Tenary operator for checkmark or X
-        sb.append(", Checked=").append(Checked ? "\u2713" : "X" );
+        sb.append(", Paid=").append(Checked ? "\u2713" : "X" ).append('\n');
         //Tenary operator for the essential variable
         if((Boolean)Essential != null){
-            sb.append(", Essential=").append(this.Essential ? "Essential" : "Non-Essential");
+            sb.append(", Essential=")
+                    .append(this.Essential ? "Essential" : "Non-Essential")
+                    .append('\n');
         }
-        sb.append('}');
         return sb.toString();
     }
 

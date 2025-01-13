@@ -5,17 +5,18 @@ import Application.Classes.ListIncomeExpenses;
 import Application.Exceptions.NumberOutOfRange;
 import Application.Utils.Menu;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class IncomeMenu {
     //Menu items stored in local variable
     private final static String[] MENU_ITEMS = {"Új Megadása", "Törlés", "Megtekintés", "Type \"exit\" to go back"};
     //Entry Point
-    public static void RunIncome() {
+    public static void RunIncome() throws IOException {
         IncomeMainMenu();
     }
     //Main menu
-    private static void IncomeMainMenu() {
+    private static void IncomeMainMenu() throws IOException {
         Scanner userInputSC = new Scanner(System.in);
         String input = "";
 
@@ -24,10 +25,10 @@ public class IncomeMenu {
             Menu.displayMenuIndexed(MENU_ITEMS);
             //get input
             input = userInputSC.nextLine();
-
+            Redirecting(input.trim());
         }
     }
-    private static void Redirecting(String input) {
+    private static void Redirecting(String input) throws IOException {
         int inputInt = 0;
         //Precheck
         //Checks if the input is blank
@@ -47,55 +48,30 @@ public class IncomeMenu {
         catch (NumberFormatException e){
             System.out.println("Not a number");
         }
-
         //Redirecting
         switch (inputInt){
             case 1: AddIncome();break;
             case 2: RemoveIncome();break;
-            case 3: ShowIncome();break;
+            case 3:
+                try{
+                    ShowIncome();
+                } catch (IOException e) {
+                    throw new IOException(e);
+                }
+                break;
         }
     }
 
-    private static void AddIncome() {
-        Scanner userIncInputSC = new Scanner(System.in);
-        Income i;
-
-        System.out.println("Is this income reoccuring? (Y/N)");
-        String reo = userIncInputSC.nextLine();
-
-
-        System.out.println("Name of income: ");
-        String name = userIncInputSC.nextLine();
-        System.out.println("Description of income: ");
-        String description = userIncInputSC.nextLine();
-        System.out.println("Amount of income: ");
-        double amount=0;
-        do {
-            amount = userIncInputSC.nextDouble();
-        }
-        while (amount < 0);
-        if (reo.equals("Y")) {
-            System.out.println("Date (Day of month) of reoccurenc: ");
-            int date;
-            try {
-                date = Integer.parseInt(userIncInputSC.nextLine());
-            } catch (NumberFormatException e) {
-                System.out.println("Invalid date, defaulting to 1");
-                date = 1;
-            }
-            i = new Income(name,amount,description,date);
-        }
-        else{
-            i = new Income(name,amount,description);
-        }
-        ListIncomeExpenses.IncomeList.add(i);
+    private static void AddIncome() throws IOException {
+        ListIncomeExpenses.AddtoIncomeList();
     }
 
     private static void RemoveIncome() {
 
     }
 
-    private static void ShowIncome() {
-
+    //just lists the incomes
+    private static void ShowIncome() throws IOException {
+        ListIncomeExpenses.ListIncomeList();
     }
 }

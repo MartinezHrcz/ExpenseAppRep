@@ -4,6 +4,7 @@ import Application.Exceptions.NumberOutOfRange;
 import Application.Menus.IncomeMenu;
 import Application.Utils.Menu;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Runner {
@@ -12,12 +13,12 @@ public class Runner {
     private final static String[] menuItems = {"Bevétel", "Kiadások","Type \"exit\" to stop program"};
 
     //Entry point
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         RunnerMainMenu();
     }
 
     //Main menu runner
-    private static void RunnerMainMenu() {
+    private static void RunnerMainMenu() throws IOException {
 
         Scanner userInputSC = new Scanner(System.in);
         String input = "";
@@ -34,7 +35,7 @@ public class Runner {
 
     //This is where the program prechecks the input
     // and redirects to the correct next menu
-    private static void UserInputRedirect(String input) {
+    private static void UserInputRedirect(String input) throws IOException {
         int inputInt = 0;
         //Precheck
 
