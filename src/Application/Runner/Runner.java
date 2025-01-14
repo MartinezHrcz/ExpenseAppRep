@@ -1,6 +1,7 @@
 package Application.Runner;
 
 import Application.Exceptions.NumberOutOfRange;
+import Application.Menus.ExpensesMenu;
 import Application.Menus.IncomeMenu;
 import Application.Utils.Menu;
 
@@ -60,6 +61,7 @@ public class Runner {
         //Redirecting
         switch (inputInt){
             case 1: IncomeMenu.RunIncome();break;
+            case 2: ExpensesMenu.RunExpenses();break;
         }
     }
 

@@ -12,8 +12,25 @@ public class Expenses {
     private boolean Checked;
     //if the expense is true or false
     private boolean Essential;
+    private int dateOfrecurrenceDay;
 
     //Constructor with every variable
+    public Expenses(String Name, String Desc, double Amount, boolean Essential, int dateOfrecurrenceDay) {
+        this.Name = Name;
+        this.Desc = Desc;
+        this.Amount = Amount;
+        this.Checked = false;
+        this.Essential = Essential;
+        this.dateOfrecurrenceDay = dateOfrecurrenceDay;
+    }
+    //Constructor without essential variable and date ofOfreoccurence
+    public Expenses(String Name, String Desc, double Amount) {
+        this.Name = Name;
+        this.Desc = Desc;
+        this.Amount = Amount;
+        this.Checked = false;
+    }
+    //Constructor without reoccurence
     public Expenses(String Name, String Desc, double Amount, boolean Essential) {
         this.Name = Name;
         this.Desc = Desc;
@@ -21,13 +38,15 @@ public class Expenses {
         this.Checked = false;
         this.Essential = Essential;
     }
-    //Constructor without essential variable
-    public Expenses(String Name, String Desc, double Amount) {
+    //Constructor without essential
+    public Expenses(String Name, String Desc, double Amount, int dateOfrecurrenceDay) {
         this.Name = Name;
         this.Desc = Desc;
         this.Amount = Amount;
         this.Checked = false;
+        this.dateOfrecurrenceDay = dateOfrecurrenceDay;
     }
+
 
     //Getters
     //-----------------------------------------
@@ -55,16 +74,14 @@ public class Expenses {
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("");
-        sb.append("Name='").append(Name).append('\n');
-        sb.append(", Description='").append(Desc).append('\n');
-        sb.append(", Amount=").append(Amount).append('\n');
+        sb.append("Name=").append(Name).append('\n');
+        sb.append("Description='").append(Desc).append('\n');
+        sb.append("Amount=").append(Amount).append('\n');
         //Tenary operator for checkmark or X
-        sb.append(", Paid=").append(Checked ? "\u2713" : "X" ).append('\n');
+        sb.append("Paid=").append(Checked ? "\u2713" : "X" ).append('\n');
         //Tenary operator for the essential variable
         if((Boolean)Essential != null){
-            sb.append(", Essential=")
-                    .append(this.Essential ? "Essential" : "Non-Essential")
-                    .append('\n');
+            sb.append(this.Essential ? "Essential" : "Non-Essential").append('\n');
         }
         return sb.toString();
     }

@@ -1,34 +1,35 @@
 package Application.Menus;
 
-import Application.Classes.Income;
 import Application.Classes.ListIncomeExpenses;
 import Application.Exceptions.NumberOutOfRange;
 import Application.Utils.Menu;
 
 import java.io.IOException;
+import java.sql.SQLOutput;
 import java.util.Scanner;
 
-public class IncomeMenu {
+public class ExpensesMenu {
     //Menu items stored in local variable
-    private final static String[] MENU_ITEMS = {"Új Megadása", "Törlés", "Megtekintés", "Megtekintés részletesen", "Type \"exit\" to go back"};
+    private final static String[] MENU_ITEMS = {"Új Megadása", "Törlés", "Megtekintés", "Megtekintés részletesen","Type \"exit\" to go back"};
     //Entry Point
-    public static void RunIncome() throws IOException {
-        IncomeMainMenu();
+    public static void RunExpenses() throws IOException {
+        ExpensesMainMenu();
     }
     //Main menu
-    private static void IncomeMainMenu() throws IOException {
+    private static void ExpensesMainMenu() throws IOException {
         Scanner userInputSC = new Scanner(System.in);
         String input = "";
 
-        while (!input.trim().equalsIgnoreCase("exit")){
+        while (!input.equalsIgnoreCase("exit")) {
             //Menu util used for menu items
-            System.out.println("Income Menu:");
+            System.out.println("Expenses Menu:");
             Menu.displayMenuIndexed(MENU_ITEMS);
             //get input
             input = userInputSC.nextLine();
-            if (!input.trim().equalsIgnoreCase("exit")) {
+            if (!input.equalsIgnoreCase("exit")) {
                 Redirecting(input.trim());
             }
+
         }
     }
     //Redirecting and prechecking input
@@ -54,18 +55,18 @@ public class IncomeMenu {
         }
         //Redirecting
         switch (inputInt){
-            case 1: AddIncome();break;
-            case 2: RemoveIncome();break;
+            case 1: AddExpense();break;
+            case 2: RemoveExpense();break;
             case 3:
                 try{
-                    ShowIncome(false);
+                    ShowExpense(false);
                 } catch (IOException e) {
                     throw new IOException(e);
                 }
                 break;
             case 4:
                 try{
-                    ShowIncome(true);
+                    ShowExpense(true);
                 } catch (IOException e) {
                     throw new IOException(e);
                 }
@@ -73,15 +74,15 @@ public class IncomeMenu {
         }
     }
     //Adding income
-    private static void AddIncome() throws IOException {
-        ListIncomeExpenses.AddtoIncomeList();
+    private static void AddExpense() throws IOException {
+        ListIncomeExpenses.AddtoExpensesList();
     }
     //Removing Income
-    private static void RemoveIncome() throws IOException {
-        ListIncomeExpenses.RemoveFromIncomeList();
+    private static void RemoveExpense() throws IOException {
+        ListIncomeExpenses.RemoveFromExpensesList();
     }
     //just lists the incomes
-    private static void ShowIncome(boolean detail) throws IOException {
-        ListIncomeExpenses.ListIncomeList(detail);
+    private static void ShowExpense(boolean detail) throws IOException {
+        ListIncomeExpenses.ListExpensesList(detail);
     }
 }
