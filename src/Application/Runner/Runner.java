@@ -2,6 +2,7 @@ package Application.Runner;
 
 import Application.Exceptions.NumberOutOfRange;
 import Application.Menus.ExpensesMenu;
+import Application.Menus.FinancesMenu;
 import Application.Menus.IncomeMenu;
 import Application.Utils.Menu;
 
@@ -11,7 +12,7 @@ import java.util.Scanner;
 public class Runner {
     //Menu items stored in local variable
     //ToDo: Store in a txt and read in on launch
-    private final static String[] menuItems = {"Bevétel", "Kiadások","Type \"exit\" to stop program"};
+    private final static String[] menuItems = {"Bevétel", "Kiadások", "Pénzügyek","Type \"exit\" to stop program"};
 
     //Entry point
     public static void main(String[] args) throws IOException {
@@ -62,6 +63,7 @@ public class Runner {
         switch (inputInt){
             case 1: IncomeMenu.RunIncome();break;
             case 2: ExpensesMenu.RunExpenses();break;
+            case 3: FinancesMenu.RunFinances();break;
         }
     }
 
