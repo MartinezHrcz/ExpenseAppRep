@@ -28,15 +28,16 @@ public class ListIncomeExpenses {
     public static void AddtoIncomeList() throws IOException {
         Scanner userIncInputSC = new Scanner(System.in);
         Income i;
-
+        //Data gathering about the income source:
         System.out.println("Is this income reoccuring? (Y/N)");
-        String reo = userIncInputSC.nextLine();
+        String reo = userIncInputSC.nextLine(); //Is it reoccuring?
 
         System.out.println("Name of income: ");
-        String name = userIncInputSC.nextLine();
+        String name = userIncInputSC.nextLine();//Name of income
 
         System.out.println("Description of income: ");
-        String description = userIncInputSC.nextLine();
+        String description = userIncInputSC.nextLine();//Description of income
+
         //amount is asked until it is valid
         System.out.println("Amount of income: ");
         double amount=0;
@@ -47,7 +48,9 @@ public class ListIncomeExpenses {
                 System.out.println("Please enter a valid number!");
             }
         }
-        while (amount < 0);
+        while (amount <= 0);
+
+
         //Only gets called if the income is reoccuring
         if (reo.equals("Y")) {
             System.out.println("Date (Day of month) of reoccurenc: ");
@@ -56,18 +59,20 @@ public class ListIncomeExpenses {
             do {
                 //for checking if the value is
                 try {
-                    date = Integer.parseInt(userIncInputSC.nextLine());
+                    date = Integer.parseInt(userIncInputSC.nextLine()); //Day of reoccurance
                 } catch (NumberFormatException e) {
                     System.out.println("Invalid date, please try again!");
                 }
             }
             while (date < 1 || date > 30) ;
-            i = new Income(name,amount,description,date);
+            i = new Income(name,amount,description,date); //New income is made with date of reoccurance
         }
+
         //if the income isn't reoccuring
         else{
-            i = new Income(name,amount,description);
+            i = new Income(name,amount,description); //New income is made without reoccurence
         }
+
         IncomeList.add(i);
     }
 
@@ -81,6 +86,7 @@ public class ListIncomeExpenses {
 
         int index = 0;
         //Listsincome list but only it's name
+        //Just prints out on the console
         for (Income i : IncomeList) {
             index++;
             System.out.println(index + "." +i.getNameOfIncome());
@@ -88,7 +94,7 @@ public class ListIncomeExpenses {
 
         Scanner userDeleteSC = new Scanner(System.in);
         String input;
-        int inputInt = 0;
+        int inputInt = 0; //for the list.get
         //User input of which index to delete
         do{
             try{
@@ -98,7 +104,8 @@ public class ListIncomeExpenses {
             catch(NumberFormatException e){
                 System.out.println("Invalid input, please try again!");
             }
-        }while (inputInt < 1 || inputInt > IncomeList.size());
+        }
+        while (inputInt < 1 || inputInt > IncomeList.size());
         //Removes the selected object
         IncomeList.remove(IncomeList.get(inputInt-1));
     }
@@ -108,6 +115,9 @@ public class ListIncomeExpenses {
         int index = 0;
         for (Income income : ListIncomeExpenses.IncomeList){
             index++;
+            //Detail levels:
+            //1.Everything is shown
+            //2.Only the name and amount
             if (detailed == true) {
                 System.out.println(index + ". " + income.toString());
             } else {
@@ -126,18 +136,20 @@ public class ListIncomeExpenses {
     public static void AddtoExpensesList() throws IOException {
         Scanner userExpInputSC = new Scanner(System.in);
         Expenses e;
+        //Data gathering about the expense:
 
         System.out.println("Is this expense reoccuring? (Y/N)");
-        String reo = userExpInputSC.nextLine();
+        String reo = userExpInputSC.nextLine(); //reoccurence
 
         System.out.println("Name of expense: ");
-        String name = userExpInputSC.nextLine();
+        String name = userExpInputSC.nextLine(); //Name of the expense
 
         System.out.println("Description of expense:");
-        String description = userExpInputSC.nextLine();
+        String description = userExpInputSC.nextLine(); //Description of the expense
 
         System.out.println("Is this expense essential? (Y/N)");
-        String ess = userExpInputSC.nextLine();
+        String ess = userExpInputSC.nextLine();//is the expense essential?
+        //loops untill it is y/n
         while (!(ess.trim().toLowerCase().equals("y") || ess.trim().toLowerCase().equals("n"))) {
             System.out.println("Invalid input, please try again!");
             ess = userExpInputSC.nextLine();
@@ -153,7 +165,6 @@ public class ListIncomeExpenses {
             } catch (NumberFormatException ex) {
                 System.out.printf("Invalid input, please try again!");
             }
-
         }
         while (amount < 1);
         //Only gets called if the income is reoccuring
@@ -226,6 +237,9 @@ public class ListIncomeExpenses {
         int index = 0;
         for (Expenses expense : ExpensesList) {
             index++;
+            //detail levels:
+            //1.Everything is listed
+            //2.Only name and amount
             if (detailed == true) {
                 System.out.println(index + ". " + expense.toString());
             }
